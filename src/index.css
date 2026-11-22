@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-canvas: #FCFCFA;
+    --bg-surface: #FFFFFF;
+    --bg-surface-soft: #FAF9F6;
+    --border-hairline: #E8DFDF;
+    --text-primary: #2D1B2E;
+    --text-secondary: #432F46;
+    --accent-rose: #DB2777;
+    --accent-rose-hover: #BE185D;
+  }
+
+  html {
+    font-family: 'Cairo', 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+
+  @media (min-width: 640px) {
+    html {
+      font-size: 16.5px;
+    }
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+}
+
+.font-latin {
+  font-family: 'Plus Jakarta Sans', 'Cairo', system-ui, sans-serif;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.srayna-canvas-bg {
+  background-color: #FCFCFA;
+  background-image:
+    radial-gradient(circle at 86% 10%, rgba(254, 249, 219, 0.55) 0%, rgba(254, 249, 219, 0) 46%),
+    radial-gradient(circle at 14% 22%, rgba(243, 244, 246, 0.55) 0%, rgba(243, 244, 246, 0) 45%),
+    radial-gradient(circle at 74% 68%, rgba(254, 252, 232, 0.5) 0%, rgba(254, 252, 232, 0) 46%),
+    radial-gradient(circle at 20% 86%, rgba(248, 250, 252, 0.65) 0%, rgba(248, 250, 252, 0) 46%),
+    linear-gradient(155deg, #FDFDFB 0%, #FFFDF2 52%, #F9FAFB 100%);
+  background-attachment: fixed;
+}
+
+.srayna-top-frame {
+  border-style: solid;
+  border-width: 6px 1px 1px 1px;
+  border-color: transparent #EDE0E6 #EDE0E6 #EDE0E6;
+  background-image:
+    var(
+      --frame-surface,
+      linear-gradient(var(--frame-bg, #FFFFFF), var(--frame-bg, #FFFFFF))
+    ),
+    linear-gradient(
+      to left,
+      var(--rim-from, #EAA8C5),
+      var(--rim-mid, #D4BFF2),
+      var(--rim-to, #F3D79B)
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

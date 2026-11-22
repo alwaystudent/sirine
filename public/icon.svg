@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F472B6" />
+      <stop offset="50%" stop-color="#DB2777" />
+      <stop offset="100%" stop-color="#9333EA" />
+    </linearGradient>
+    <linearGradient id="wingTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#FCE7F3" />
+    </linearGradient>
+    <linearGradient id="wingBot" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE68A" />
+      <stop offset="100%" stop-color="#FBCFE8" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="512" height="512" rx="112" fill="url(#bgGrad)" />
+  <circle cx="256" cy="256" r="196" fill="none" stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="6" stroke-dasharray="14 12" />
+  <!-- Sparkle Stars -->
+  <path d="M126 116 L134 138 L156 146 L134 154 L126 176 L118 154 L96 146 L118 138 Z" fill="#FDE047" />
+  <path d="M388 110 L394 126 L410 132 L394 138 L388 154 L382 138 L366 132 L382 126 Z" fill="#FFFFFF" opacity="0.92" />
+  <circle cx="380" cy="382" r="9" fill="#FDE047" />
+  <circle cx="132" cy="378" r="7" fill="#FFFFFF" opacity="0.85" />
+  <!-- Butterfly Motif -->
+  <g transform="translate(256, 260)">
+    <path d="M-8 -18 C-44 -96 -144 -92 -136 -22 C-130 28 -58 26 -10 8 Z" fill="url(#wingTop)" />
+    <path d="M8 -18 C44 -96 144 -92 136 -22 C130 28 58 26 10 8 Z" fill="url(#wingTop)" />
+    <path d="M-10 10 C-56 18 -114 58 -86 96 C-60 128 -18 76 -8 24 Z" fill="url(#wingBot)" />
+    <path d="M10 10 C56 18 114 58 86 96 C60 128 18 76 8 24 Z" fill="url(#wingBot)" />
+    <circle cx="-78" cy="-34" r="16" fill="#F472B6" opacity="0.55" />
+    <circle cx="78" cy="-34" r="16" fill="#F472B6" opacity="0.55" />
+    <rect x="-10" y="-44" width="20" height="96" rx="10" fill="#4A1D4B" />
+    <path d="M-4 -42 Q-20 -78 -36 -74" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" />
+    <path d="M4 -42 Q20 -78 36 -74" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" />
+    <circle cx="-38" cy="-74" r="7" fill="#FDE047" />
+    <circle cx="38" cy="-74" r="7" fill="#FDE047" />
+  </g>
+</svg>

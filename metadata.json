@@ -1,0 +1,6 @@
+{
+  "name": "سريّنة Srayna",
+  "description": "منصة تعليمية تفاعلية لتلميذات السنة الخامسة ابتدائي متوافقة مع المناهج الرسمية التونسية 2026 مع نظام مكافآت وأوسمة تشجيعية.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
