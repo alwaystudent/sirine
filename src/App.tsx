@@ -353,7 +353,6 @@ export default function App() {
               <span className="hidden md:inline-block text-sm font-bold text-[#432F46] whitespace-nowrap">
                 {selectedTerm === 'الكل' ? 'كل الثلاثيات' : selectedTerm}
               </span>
-              <PWAInstallButton variant="header" />
               <button
                 type="button"
                 onClick={handleStartNextChallenge}
@@ -503,7 +502,6 @@ export default function App() {
                     <RoseEmblem variant="pink" size={22} />
                     <span>تصفّحي الامتحانات ({CURRICULUM_STATS.examsCount})</span>
                   </button>
-                  <PWAInstallButton variant="hero" />
                 </div>
               </div>
 
@@ -950,6 +948,9 @@ export default function App() {
           </div>
         </footer>
       </div>
+
+      {/* Floating PWA Install Window (auto-hides once installed) */}
+      <PWAInstallButton />
     </div>
   );
 }

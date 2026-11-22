@@ -1,25 +1,22 @@
 import React, { useState } from 'react';
-import { Download, Monitor, Share, Smartphone, X } from 'lucide-react';
+import { CheckCircle2, Download, Monitor, Share, Smartphone, X } from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
 import { usePWAInstall } from '../hooks/usePWAInstall';
+import { FrameBlossom } from './FrameBlossom';
 import { RoseEmblem } from './RoseEmblem';
 
-interface PWAInstallButtonProps {
-  variant?: 'header' | 'hero';
-}
-
-export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({ variant = 'header' }) => {
-  const { canNativeInstall, isInstalled, isIOS, install } = usePWAInstall();
+export const PWAInstallButton: React.FC = () => {
+  const { canNativeInstall, isInstalled, isIOS, install, markAsInstalled } = usePWAInstall();
   const [showInstructions, setShowInstructions] = useState(false);
+  const [dismissedForSession, setDismissedForSession] = useState(false);
 
-  if (isInstalled) {
-    return null;
-  }
+  const showFloatingWindow = !isInstalled && !dismissedForSession;
 
-  const handleClick = async () => {
+  const handleInstallClick = async () => {
     if (canNativeInstall) {
       const outcome = await install();
-      if (outcome !== 'accepted') {
-        return;
+      if (outcome === 'accepted') {
+        setShowInstructions(false);
       }
     } else {
       setShowInstructions(true);
@@ -28,19 +25,64 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({ variant = 'h
 
   return (
     <>
-      <button
-        type="button"
-        onClick={handleClick}
-        className={
-          variant === 'hero'
-            ? 'inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-l from-[#EC4899] via-[#DB2777] to-[#9333EA] text-white text-sm sm:text-base font-extrabold shadow-md shadow-[#DB2777]/25 hover:brightness-105 transition-all whitespace-nowrap shrink-0 cursor-pointer'
-            : 'inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-l from-[#EC4899] via-[#DB2777] to-[#9333EA] text-white text-sm font-extrabold shadow-sm shadow-[#DB2777]/25 hover:brightness-105 transition-all whitespace-nowrap shrink-0 cursor-pointer'
-        }
-      >
-        <RoseEmblem variant="light" size={variant === 'hero' ? 22 : 19} />
-        <Download className="w-4 h-4 shrink-0" />
-        <span>{variant === 'hero' ? 'ثبّتي التطبيق على جهازكِ' : 'ثبّتي التطبيق'}</span>
-      </button>
+      <AnimatePresence>
+        {showFloatingWindow && (
+          <motion.aside
+            key="pwa-floating-window"
+            initial={{ opacity: 0, y: 18, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.96 }}
+            transition={{ duration: 0.22 }}
+            aria-label="نافذة تثبيت تطبيق سريّنة"
+            style={
+              {
+                '--frame-bg': 'rgba(255, 255, 255, 0.97)',
+                '--rim-from': '#EAA8C5',
+                '--rim-mid': '#D4BFF2',
+                '--rim-to': '#F3D79B',
+              } as React.CSSProperties
+            }
+            className="fixed bottom-4 inset-x-4 sm:inset-x-auto sm:left-5 sm:bottom-5 sm:w-[348px] z-40 srayna-top-frame rounded-2xl p-4 shadow-xl shadow-[#2D1B2E]/12 backdrop-blur-md"
+          >
+            <FrameBlossom size="sm" />
+
+            <div className="flex items-start justify-between gap-2.5 mb-3">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#FDF2F8] to-[#F5F3FF] border border-[#F2D7E5] flex items-center justify-center shrink-0">
+                  <Smartphone className="w-5 h-5 text-[#DB2777]" />
+                </span>
+                <div className="min-w-0">
+                  <h3 className="text-base font-extrabold text-[#2D1B2E] leading-tight">
+                    ثبّتي تطبيق سريّنة
+                  </h3>
+                  <p className="text-xs sm:text-sm font-semibold text-[#432F46] mt-0.5 leading-snug">
+                    افتحيه من شاشتكِ وتصفّحي دون إنترنت
+                  </p>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setDismissedForSession(true)}
+                className="p-1.5 rounded-lg text-[#5C475E] hover:bg-[#FDF2F8] hover:text-[#DB2777] transition-colors shrink-0 cursor-pointer"
+                aria-label="إغلاق نافذة التثبيت"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleInstallClick}
+              className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-l from-[#EC4899] via-[#DB2777] to-[#9333EA] text-white text-sm sm:text-base font-extrabold shadow-sm shadow-[#DB2777]/25 hover:brightness-105 transition-all whitespace-nowrap cursor-pointer"
+            >
+              <RoseEmblem variant="light" size={20} />
+              <Download className="w-4 h-4 shrink-0" />
+              <span>تثبيت التطبيق الآن</span>
+            </button>
+          </motion.aside>
+        )}
+      </AnimatePresence>
 
       {showInstructions && (
         <div
@@ -51,9 +93,18 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({ variant = 'h
           aria-labelledby="pwa-guide-title"
         >
           <div
-            className="w-full max-w-md bg-white border border-[#FBCFE8] rounded-3xl p-6 shadow-xl text-right space-y-4"
+            style={
+              {
+                '--rim-from': '#EAA8C5',
+                '--rim-mid': '#D4BFF2',
+                '--rim-to': '#F3D79B',
+              } as React.CSSProperties
+            }
+            className="relative w-full max-w-md srayna-top-frame rounded-3xl p-6 shadow-xl text-right space-y-4"
             onClick={(e) => e.stopPropagation()}
           >
+            <FrameBlossom size="md" />
+
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-center gap-3">
                 <span className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#EC4899] to-[#9333EA] text-white flex items-center justify-center shrink-0">
@@ -109,13 +160,26 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({ variant = 'h
               </div>
             )}
 
-            <button
-              type="button"
-              onClick={() => setShowInstructions(false)}
-              className="w-full py-3 rounded-xl bg-[#DB2777] text-white text-base font-extrabold hover:bg-[#BE185D] transition-colors cursor-pointer"
-            >
-              حسناً، فهمتِ
-            </button>
+            <div className="flex flex-wrap items-center gap-2.5">
+              <button
+                type="button"
+                onClick={() => {
+                  setShowInstructions(false);
+                  markAsInstalled();
+                }}
+                className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#059669] text-white text-sm sm:text-base font-extrabold hover:bg-[#047857] transition-colors whitespace-nowrap cursor-pointer"
+              >
+                <CheckCircle2 className="w-4 h-4 shrink-0" />
+                <span>تمّ التثبيت</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowInstructions(false)}
+                className="px-4 py-3 rounded-xl bg-[#FDF2F8] border border-[#F2D7E5] text-[#2D1B2E] text-sm sm:text-base font-bold hover:bg-[#FCE7F3] transition-colors whitespace-nowrap cursor-pointer"
+              >
+                إغلاق
+              </button>
+            </div>
           </div>
         </div>
       )}
