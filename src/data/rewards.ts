@@ -70,8 +70,8 @@ export const BADGES: Badge[] = [
   {
     id: 'science_explorer',
     title: 'وسام عالمة المستقبل',
-    description: 'اكتشفتِ أسرار العلوم والطاقة والكهرباء بذكاء.',
-    criteriaText: 'إتمام درسين في العلوم والتكنولوجيا',
+    description: 'اكتشفتِ أسرار الإيقاظ العلمي والطاقة والكهرباء بذكاء.',
+    criteriaText: 'إتمام درسين في الإيقاظ العلمي',
     colorHex: '#10B981',
     bgHex: '#ECFDF5',
     emblemType: 'atom',
@@ -97,8 +97,8 @@ export const BADGES: Badge[] = [
   {
     id: 'creative_artist',
     title: 'وسام الفنانة الحالمة',
-    description: 'أبهرتِ الجميع بذوقكِ في الفنون والتكنولوجيا.',
-    criteriaText: 'إتمام درس في الفنون والتكنولوجيا',
+    description: 'أبهرتِ الجميع بذوقكِ في التربية التكنولوجية والفنّية.',
+    criteriaText: 'إتمام درس في التربية التكنولوجية والفنّية',
     colorHex: '#F97316',
     bgHex: '#FFF7ED',
     emblemType: 'palette',

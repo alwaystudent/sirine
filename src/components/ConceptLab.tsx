@@ -77,22 +77,22 @@ const MATERIALS: Record<
   copper: {
     label: 'نحاس (معدن)',
     conductive: true,
-    note: 'النحاس مادة موصلة ممتازة تسمح بمرور التيار الكهربائي.',
+    note: 'النحاس جسم ناقل ممتاز يسمح بمرور التيار الكهربائي.',
   },
   gold: {
     label: 'فضة / ذهب (معدن)',
     conductive: true,
-    note: 'المعادن مثل الذهب والفضة موصلة للكهرباء وتغلق الدارة.',
+    note: 'المعادن مثل الذهب والفضة أجسام ناقلة للكهرباء وتغلق الدارة.',
   },
   wood: {
     label: 'خشب جاف',
     conductive: false,
-    note: 'الخشب الجاف مادة عازلة تمنع مرور التيار الكهربائي.',
+    note: 'الخشب الجاف جسم عازل يمنع مرور التيار الكهربائي.',
   },
   plastic: {
     label: 'بلاستيك',
     conductive: false,
-    note: 'البلاستيك مادة عازلة تُستعمل لتغليف الأسلاك وحمايتنا.',
+    note: 'البلاستيك جسم عازل يُستعمل لتغليف الأسلاك وحمايتنا.',
   },
 };
 
@@ -228,7 +228,7 @@ export const ConceptLab: React.FC = () => {
                 <div className="flex items-center justify-between text-sm font-semibold text-[#2D1B2E] mb-3">
                   <span>تمثيل المستطيل ({rectWidth} صم × {rectHeight} صم)</span>
                   <span className="text-[#7C3AED] tabular-nums">
-                    المساحة = {area} صم² · المحيط = {perimeter} صم
+                    قيس المساحة = {area} صم² · قيس المحيط = {perimeter} صم
                   </span>
                 </div>
                 <div className="flex items-center justify-center py-4 overflow-x-auto">
@@ -287,7 +287,7 @@ export const ConceptLab: React.FC = () => {
               <div className="space-y-4">
                 <div>
                   <div className="flex justify-between text-sm font-semibold mb-1.5">
-                    <label htmlFor="width-slider">طول المستطيل</label>
+                    <label htmlFor="width-slider">قيس طول المستطيل</label>
                     <span className="tabular-nums text-[#7C3AED]">{rectWidth} صم</span>
                   </div>
                   <input
@@ -303,7 +303,7 @@ export const ConceptLab: React.FC = () => {
 
                 <div>
                   <div className="flex justify-between text-sm font-semibold mb-1.5">
-                    <label htmlFor="height-slider">عرض المستطيل</label>
+                    <label htmlFor="height-slider">قيس عرض المستطيل</label>
                     <span className="tabular-nums text-[#7C3AED]">{rectHeight} صم</span>
                   </div>
                   <input
@@ -458,7 +458,7 @@ export const ConceptLab: React.FC = () => {
             <div className="lg:col-span-5 space-y-5">
               <div>
                 <h3 className="text-lg sm:text-xl font-extrabold text-[#2D1B2E] mb-1">
-                  اختبري المواد الموصلة والعازلة
+                  اختبري الأجسام الناقلة والعازلة للكهرباء
                 </h3>
                 <p className="text-base font-semibold text-[#432F46] leading-relaxed">
                   أغلقي القاطعة وجرّبي وضع مواد مختلفة داخل الدارة لاكتشاف متى يضيء المصباح.

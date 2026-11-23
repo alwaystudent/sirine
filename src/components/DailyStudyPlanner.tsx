@@ -142,7 +142,7 @@ function createStarterState(): StudyPlannerState {
         subjectId: 'arabic',
         startTime: '17:35',
         durationMinutes: 20,
-        goal: 'قواعد الجملة الفعلية والتدريب على التعبير',
+        goal: 'قواعد الجملة الفعلية والتدريب على الإنتاج الكتابي',
         track: 'lessons',
         completedDate: null,
       },
